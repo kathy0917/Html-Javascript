@@ -1,0 +1,90 @@
+﻿<html>
+<head>
+<script language="javascript">
+function current_time(){
+
+var now = new Date();
+thisHour = now.getHours();
+thisMinute = now.getMinutes();
+thisSecond = now.getSeconds();
+var ampm;
+
+if(thisHour>12){
+am="PM";
+thisHour = thisHour-12;
+}else am="AM";
+
+document.form.input.value = thisHour +":"+ thisMinute+":"+thisSecond +":"+am;
+setTimeout("current_time()",1000);
+
+}
+
+
+
+
+</script>
+</head>
+
+<body onLoad="current_time()">
+<script language="javascript">
+var arr = new Array("일","월","화","수","목","금","토");
+var last = new Array(31,28,31,30,31,30,31,31,30,31,30,31);
+
+var current = new Date();
+thisYear = current.getFullYear();
+thisMonth = current.getMonth();
+thisDate = current.getDate();
+
+var start = new Date(thisYear,thisMonth,1);
+thisDay = start.getDay();
+
+
+document.write("<h1><center>","Calendar","</center></h1>");
+
+document.write("<center><table border='1'>");
+document.write("<tr>");
+document.write("<td colspan=7>");
+
+document.write(thisYear+"년"+(thisMonth+1)+"월");
+document.write("</td>");
+
+document.write("</tr>");
+
+document.write("<tr>");
+for(var i=0;i<arr.length;i++){
+document.write("<td>",arr[i],"</td>");
+
+}
+document.write("</tr>");
+
+var column=0;
+for(var i=0;i<thisDay;i++){
+document.write("<td>","","</td>");
+column++;
+}
+
+for(var i=1;i<=last[thisMonth];i++){
+if(i==thisDate){
+document.write("<td>","<form name='form'>","<font color='red'>",i,"<br><input type='text' name='input'>","</font>","</form>","</td>");
+
+}else
+document.write("<td>",i,"</td>");
+column++;
+if(column==7){
+document.write("<tr>","</tr>");
+column=0;
+}
+}
+
+document.write("</tr>");
+
+document.write("</table></center><br>");
+
+
+</script>
+
+
+
+</body>
+
+</html>
